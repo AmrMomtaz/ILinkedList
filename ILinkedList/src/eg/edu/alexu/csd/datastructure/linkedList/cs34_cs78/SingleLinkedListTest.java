@@ -50,7 +50,19 @@ class SingleLinkedListTest {
 		}
 		assertEquals(test.size(),7);
 		assertEquals(test.isEmpty(),false);
+		test.add('c');
+		test.add('s');
+		test.add('e');
+		test.add('d');
+		test.add("CSED");
 		
+		//  [1,2,3,4,5,6,7,c,s,e,d,"CSED"] //
+		
+		assertEquals(test.get(7),'c');
+		assertEquals(test.get(8),'s');
+		assertEquals(test.get(9),'e');
+		assertEquals(test.get(10),'d');
+		assertEquals(test.get(11),"CSED");
 		
 		test.clear();
 		//  [] empty linked list  //

@@ -121,4 +121,17 @@ public class SingleLinkedList implements ILinkedList
 		}
 		return false;
 	}
+	public static void main(String[] args) {
+		SingleLinkedList f= new SingleLinkedList();
+		f.add(1);
+		f.add(2);
+		f.add(5);
+		f.remove(2);
+		f.add('h');
+		System.out.print("[");
+		for(int i=0; i<2;i++) {
+			System.out.print(f.get(i)+" ,");
+		}
+		System.out.print(f.get(2)+"]");
+	}
 }
