@@ -84,12 +84,16 @@ public class SingleLinkedList implements ILinkedList
 
 	public void remove(int index) {
 		int i;
+		if(index==0) {
+			head=head.next;
+		}
+		else {
 		node delete = head;
 		for(i=0;i<index-1;i++) {
 			delete=delete.next;
 		}
-		
-		
+		delete.next=delete.next.next;
+		}
 	}
 
 	public int size() {
