@@ -3,12 +3,14 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs34_cs78;
 public class SingleLinkedList implements ILinkedList
 {
 	node head;
+	int size;
 	static class node
 	{
 		Object value;
 		node next;
 		
-		node(Object x){
+		node(Object x)
+		{
 			value = x;
 			next=null;
 		}
@@ -35,9 +37,11 @@ public class SingleLinkedList implements ILinkedList
 				loop.next = insert;
 				insert.next = temp;
 			}
+			size++;
 	}
 
-	public void add(Object element) {
+	public void add(Object element) 
+	{
 		node newNode = new node(element);
 		if(head==null) {
 			head = newNode;
@@ -48,62 +52,64 @@ public class SingleLinkedList implements ILinkedList
 				last=last.next;
 			}
 			last.next= newNode;
-		}	
+		}
+		size++;
 	}
 
-	public Object get(int index) {
+	public Object get(int index) 
+	{
 		int i;
 		node search=head;
-			for(i=0;i<index;i++) {
-				search=search.next;
-			}
+		for(i=0;i<index;i++) 
+		{
+			search=search.next;
+		}
 		return search.value;
 	}
 
-	public void set(int index, Object element) {
+	public void set(int index, Object element)
+	{
 		int i;
 		node loop = head;
 		for(i=0; i< index ;i++) {
 			loop=loop.next;
 		}
 		loop.value = element;
-		
 	}
 
-	public void clear() {
+	public void clear() 
+	{
 		head = null;
-		
+		size = 0;
 	}
 
-	public boolean isEmpty() {
-		if(head==null)
-			return true;
-		else
-			return false;
+	public boolean isEmpty() 
+	{
+		return (head==null);
 	}
 
-	public void remove(int index) {
+	public void remove(int index) 
+	{
 		int i;
-		if(index==0) {
+		if(index==0) 
+		{
 			head=head.next;
 		}
-		else {
-		node delete = head;
-		for(i=0;i<index-1;i++) {
-			delete=delete.next;
+		else 
+		{
+			node delete = head;
+			for(i=0;i<index-1;i++) 
+			{
+				delete=delete.next;
+			}
+			delete.next=delete.next.next;
 		}
-		delete.next=delete.next.next;
-		}
+		size--;
 	}
 
-	public int size() {
-		int count=0;
-		node counter = head;
-		while(counter!=null) {
-			count++;
-			counter=counter.next;
-		}
-		return count;
+	public int size() 
+	{
+		return size;
 	}
 
 	public ILinkedList sublist(int fromIndex, int toIndex) {
@@ -114,24 +120,12 @@ public class SingleLinkedList implements ILinkedList
 	public boolean contains(Object o) 
 	{
 		node search = head;
-		while(search!=null) {
+		while(search!=null) 
+		{
 			if(search.value == o)
 				return true;
 			search = search.next;
 		}
 		return false;
-	}
-	public static void main(String[] args) {
-		SingleLinkedList f= new SingleLinkedList();
-		f.add(1);
-		f.add(2);
-		f.add(5);
-		f.remove(2);
-		f.add('h');
-		System.out.print("[");
-		for(int i=0; i<2;i++) {
-			System.out.print(f.get(i)+" ,");
-		}
-		System.out.print(f.get(2)+"]");
 	}
 }

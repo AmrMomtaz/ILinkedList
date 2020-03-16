@@ -89,6 +89,7 @@ public class DoubleLinkedList implements ILinkedList
 	{
 		header.set_next(trailer);
 		trailer.set_previous(header);
+		size =0;
 	}
 
 	public boolean isEmpty()
