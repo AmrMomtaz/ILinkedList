@@ -46,16 +46,18 @@ public class UserInterface
 				if(polynomial.charAt(0)!='(') {
 					validInput = false;
 				}
-				String[] numbersString = polynomial.split("\\D+");
-				if((numbersString.length-1) <=0 || ((numbersString.length-1)%2) !=0 || !validInput) {
+				polynomial = polynomial.replace("(","");
+				polynomial = polynomial.replace(")","");
+				String[] numbersString = polynomial.split(",");
+				if((numbersString.length) <=0 || ((numbersString.length)%2) !=0 || !validInput) {
 				wrongInput = true;
 				System.out.println("Wrong Input");
 				System.out.println("Insert the polynomial terms in the form:\r\n" + 
 						"(coeff1, exponent1), (coeff2, exponent2), ..");
 				}
 				else {
-				numbers = new int[(numbersString.length-1)/2][2];
-				for(int i =1,j=0; i<numbersString.length-1;i+=2,j++) {
+				numbers = new int[(numbersString.length)/2][2];
+				for(int i =0,j=0; i<numbersString.length;i+=2,j++) {
 					numbers[j][0] = Integer.parseInt(numbersString[i]);
 					numbers[j][1] = Integer.parseInt(numbersString[i+1]);
 				}
