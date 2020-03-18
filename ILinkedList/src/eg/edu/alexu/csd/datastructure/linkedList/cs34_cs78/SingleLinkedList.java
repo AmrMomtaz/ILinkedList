@@ -18,6 +18,7 @@ public class SingleLinkedList implements ILinkedList
 	
 	public void add(int index, Object element)
 	{
+		if (index>size)throw new IllegalArgumentException("The index is out of bounds");
 			int i;
 			node insert = new node(element);
 			node loop   = head;
@@ -58,6 +59,7 @@ public class SingleLinkedList implements ILinkedList
 
 	public Object get(int index) 
 	{
+		if (index>size)throw new IllegalArgumentException("The index is out of bounds");
 		int i;
 		node search=head;
 		for(i=0;i<index;i++) 
@@ -69,6 +71,7 @@ public class SingleLinkedList implements ILinkedList
 
 	public void set(int index, Object element)
 	{
+		if (index>size)throw new IllegalArgumentException("The index is out of bounds");
 		int i;
 		node loop = head;
 		for(i=0; i< index ;i++) {
@@ -90,6 +93,7 @@ public class SingleLinkedList implements ILinkedList
 
 	public void remove(int index) 
 	{
+		if (index>size)throw new IllegalArgumentException("The index is out of bounds");
 		int i;
 		if(index==0) 
 		{
