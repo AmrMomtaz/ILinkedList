@@ -1,10 +1,14 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs34_cs78;
 
 import java.awt.Point;
+import java.util.Arrays;
 
 public class PolynomialSolver implements IPolynomialSolver
 {
-	DoubleLinkedList A,B,C,R = new DoubleLinkedList();
+	public static DoubleLinkedList A = new DoubleLinkedList();
+	public static DoubleLinkedList B = new DoubleLinkedList();
+	public static DoubleLinkedList C = new DoubleLinkedList();
+	public static DoubleLinkedList R = new DoubleLinkedList();
 	
 	public DoubleLinkedList array_to_list(int [][] terms )
 	{
@@ -31,7 +35,26 @@ public class PolynomialSolver implements IPolynomialSolver
 		}
 		return result;
 	}
-
+	public int[][] sort(DoubleLinkedList l){
+		int[][] sortedArray = list_to_array(l);
+		boolean unsorted = true;
+		int temp;
+		while(unsorted) {
+			unsorted = false;
+			for(int i =0; i<sortedArray.length-1 ; i++) {
+				if(sortedArray[i][1]<sortedArray[i+1][1]) {
+					unsorted = true;
+					temp = sortedArray[i][1];
+					sortedArray[i][1]=sortedArray[i+1][1];
+					sortedArray[i+1][1]=temp;
+					temp = sortedArray[i][0];
+					sortedArray[i][0]=sortedArray[i+1][0];
+					sortedArray[i+1][0]=temp;
+				}
+			}
+		}
+		return sortedArray;
+	}
 	public void setPolynomial(char poly, int[][] terms)
 	{
 		if (poly == 'a'||poly =='A')
@@ -133,44 +156,108 @@ public class PolynomialSolver implements IPolynomialSolver
 	}
 	
 	
-	/**
-	* Add two polynomials
-	* @param poly1
-	* first polynomial
-	* @param poly2
-	* second polynomial
-	* @return the result polynomial
-	*/
 	public int[][] add(char poly1, char poly2)
 	{
-		return null;
+		DoubleLinkedList S = new DoubleLinkedList();
+		boolean taken=false;
+		int[][] p1 = null;
+		int[][] p2 = null;
+		if(poly1 == 'a' || poly1 == 'A')
+			p1 = list_to_array(A);
+		else if(poly1 == 'b' || poly1 == 'B')
+			p1 = list_to_array(B);
+		else if(poly1 == 'c' || poly1 == 'C')
+			p1 = list_to_array(C);
+		if(poly2 == 'a' || poly2 == 'A')
+			p2 = list_to_array(A);
+		else if(poly2 == 'b' || poly2 == 'B')
+			p2 = list_to_array(B);
+		else if(poly2 == 'c' || poly2 == 'C')
+			p2 = list_to_array(C);
+		S = array_to_list(p2);
+		for(int i=0 ; i<p1.length ; i++) {
+			taken = false;
+			for(int j=0 ; j<p2.length ; j++) {
+				if(p1[i][1]==p2[j][1]) {
+					taken = true;
+					S.set(j, new Point(p1[i][0] + p2[j][0] , p1[i][1]));
+				}
+			}
+			if(taken==false) {
+				S.add(new Point(p1[i][0],p1[i][1]));
+			}
+		}
+		return sort(S);
 	}
 	
 	
-	/**
-	* Subtract two polynomials
-	* @param poly1
-	* first polynomial
-	* @param poly2
-	* second polynomial
-	* @return the result polynomial
-	*/
+
 	public int[][] subtract(char poly1, char poly2)
 	{
-		return null;
+		DoubleLinkedList S = new DoubleLinkedList();
+		boolean taken=false;
+		int[][] p1 = null;
+		int[][] p2 = null;
+		if(poly1 == 'a' || poly1 == 'A')
+			p1 = list_to_array(A);
+		else if(poly1 == 'b' || poly1 == 'B')
+			p1 = list_to_array(B);
+		else if(poly1 == 'c' || poly1 == 'C')
+			p1 = list_to_array(C);
+		if(poly2 == 'a' || poly2 == 'A')
+			p2 = list_to_array(A);
+		else if(poly2 == 'b' || poly2 == 'B')
+			p2 = list_to_array(B);
+		else if(poly2 == 'c' || poly2 == 'C')
+			p2 = list_to_array(C);
+		for(int k=0;k<p2.length;k++) {
+			p2[k][0]*=-1;
+		}
+		S = array_to_list(p2);
+		for(int i=0 ; i<p1.length ; i++) {
+			taken = false;
+			for(int j=0 ; j<p2.length ; j++) {
+				if(p1[i][1]==p2[j][1]) {
+					taken = true;
+					S.set(j, new Point(p1[i][0] + p2[j][0] , p1[i][1]));
+				}
+			}
+			if(taken==false) {
+				S.add(new Point(p1[i][0],p1[i][1]));
+			}
+		}
+		return sort(S);
 	}
-	
-	
-	/**
-	* Multiply two polynomials
-	* @param poly1
-	* first polynomial
-	* @param poly2
-	* second polynomial
-	* @return the result polynomial
-	*/
 	public int[][] multiply(char poly1, char poly2)
 	{
-		return null;
+		DoubleLinkedList M = new DoubleLinkedList();
+		int[][] p1 = null;
+		int[][] p2 = null;
+		if(poly1 == 'a' || poly1 == 'A')
+			p1 = list_to_array(A);
+		else if(poly1 == 'b' || poly1 == 'B')
+			p1 = list_to_array(B);
+		else if(poly1 == 'c' || poly1 == 'C')
+			p1 = list_to_array(C);
+		if(poly2 == 'a' || poly2 == 'A')
+			p2 = list_to_array(A);
+		else if(poly2 == 'b' || poly2 == 'B')
+			p2 = list_to_array(B);
+		else if(poly2 == 'c' || poly2 == 'C')
+			p2 = list_to_array(C);
+		for(int i=0; i<p1.length ; i++) {
+			for(int j=0 ; j<p2.length ; j++) {
+				M.add(new Point((p1[i][0]*p2[j][0]),(p1[i][1]+p2[j][1])));
+			}
+		}
+		for(int i=0;i<M.size;i++) {
+			for(int j=i+1 ; j<M.size ; j++) {
+				Point m1 = (java.awt.Point) M.get(i);
+				Point m2 = (java.awt.Point) M.get(j);
+				if(m1.y == m2.y) {
+					M.set(i,new Point(m1.x + m2.x , m2.y));
+					M.remove(j);
+				}}}
+		return sort(M);
 	}
 }
