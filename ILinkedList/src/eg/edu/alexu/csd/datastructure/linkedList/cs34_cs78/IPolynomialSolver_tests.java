@@ -2,6 +2,8 @@ package eg.edu.alexu.csd.datastructure.linkedList.cs34_cs78;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 class IPolynomialSolver_tests 
@@ -114,5 +116,27 @@ class IPolynomialSolver_tests
 		assertEquals(27509.9609375,pol.evaluatePolynomial('a', 5));
 		pol.clearPolynomial('A');
 		assertEquals(0,pol.evaluatePolynomial('a', 999));
+	}
+	@Test
+	void test6(){
+		//operations test
+		PolynomialSolver test = new PolynomialSolver();
+		PolynomialSolver pol = new PolynomialSolver();
+		int[][] a = {{1,2},{5,1},{15,0}};
+		int[][] b = {{1,4},{3,1},{1,0}};
+		int[][] c = {{15,1},{6,0}};
+		pol.A = test.array_to_list(a);
+		pol.B = test.array_to_list(b);
+		pol.C = test.array_to_list(c);
+		int[][] expected = {{1,4},{1,2},{8,1},{16,0}};
+		assertEquals(Arrays.deepToString(test.add('a', 'b')),Arrays.deepToString(expected));
+		expected = new int[][] {{1,2},{20,1},{21,0}};
+		assertEquals(Arrays.deepToString(test.add('a', 'c')),Arrays.deepToString(expected));
+		expected = new int[][] {{1,4},{18,1},{7,0}};
+		assertEquals(Arrays.deepToString(test.add('b', 'c')),Arrays.deepToString(expected));
+		expected = new int[][] {{1,6},{5,5},{15,4},{3,3},{16,2},{50,1},{15,0}};
+		assertEquals(Arrays.deepToString(test.multiply('a', 'b')),Arrays.deepToString(expected));
+		expected = new int[][] {{1,2},{-10,1},{9,0}};
+		assertEquals(Arrays.deepToString(test.subtract('a', 'c')),Arrays.deepToString(expected));
 	}
 }
