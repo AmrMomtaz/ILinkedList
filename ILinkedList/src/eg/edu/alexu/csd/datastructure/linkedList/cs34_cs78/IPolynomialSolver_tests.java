@@ -83,7 +83,7 @@ class IPolynomialSolver_tests
 		expected = "-5x^(2) + 5x + 1 - 6x^(-5) + x^(-7)";
 		assertEquals(expected, pol.print('a'));
 		pol.A.clear();
-		assertEquals("", pol.print('a'));
+		assertEquals("0", pol.print('a'));
 		}
 	@Test
 	void test5()
