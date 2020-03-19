@@ -60,11 +60,11 @@ public class PolynomialSolver implements IPolynomialSolver
 		{
 			A = array_to_list(terms);
 		}
-		if (poly == 'b'||poly =='B')
+		else if (poly == 'b'||poly =='B')
 		{
 			B = array_to_list(terms);
 		}
-		if (poly == 'c'||poly =='C')
+		else if (poly == 'c'||poly =='C')
 		{
 			C = array_to_list(terms);
 		}
@@ -78,15 +78,15 @@ public class PolynomialSolver implements IPolynomialSolver
 		{
 			x = A;
 		}
-		if (poly == 'b'||poly =='B')
+		else if (poly == 'b'||poly =='B')
 		{
 			x = B;
 		}
-		if (poly == 'c'||poly =='C')
+		else if (poly == 'c'||poly =='C')
 		{
 			x = C;
 		}
-		if (poly == 'r'||poly =='R')
+		else if (poly == 'r'||poly =='R')
 		{
 			x = R;
 		}
@@ -116,11 +116,11 @@ public class PolynomialSolver implements IPolynomialSolver
 		{
 			A.clear();
 		}
-		if (poly == 'b'||poly =='B')
+		else if (poly == 'b'||poly =='B')
 		{
 			B.clear();
 		}
-		if (poly == 'c'||poly =='C')
+		else if (poly == 'c'||poly =='C')
 		{
 			C.clear();
 		}
@@ -134,15 +134,15 @@ public class PolynomialSolver implements IPolynomialSolver
 		{
 			x = A;
 		}
-		if (poly == 'b'||poly =='B')
+		else if (poly == 'b'||poly =='B')
 		{
 			x = B;
 		}
-		if (poly == 'c'||poly =='C')
+		else if (poly == 'c'||poly =='C')
 		{
 			x = C;
 		}
-		if (poly == 'r'||poly =='R')
+		else if (poly == 'r'||poly =='R')
 		{
 			x = R;
 		}

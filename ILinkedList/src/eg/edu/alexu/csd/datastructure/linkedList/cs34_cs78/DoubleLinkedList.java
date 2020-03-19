@@ -119,15 +119,16 @@ public class DoubleLinkedList implements ILinkedList
 		return size;
 	}
 	
-	/**
-	* @param fromIndex
-	* @param toIndex
-	* @return a view of the portion of this list between the specified
-	* fromIndex and toIndex, inclusively.
-	*/
-	public ILinkedList sublist(int fromIndex, int toIndex)
+	public DoubleLinkedList sublist(int fromIndex, int toIndex)
 	{
-		return null;
+		if (toIndex >=size)throw new IllegalArgumentException("The index is out of bounds");
+		DoubleLinkedList sub = new DoubleLinkedList();
+		for (int i = fromIndex ; i <=toIndex;i++)
+		{
+			Object element = this.get(i);
+			sub.add(element);
+		}
+		return sub;
 	}
 	
 	public boolean contains(Object o)

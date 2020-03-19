@@ -62,4 +62,21 @@ class DoubleLinkedListTests
 	    String actualMessage = IllegalArgumentException.getMessage();
 	    assertTrue(actualMessage.contains(expectedMessage));
 	}
+	@Test
+	void test4()
+	{
+		DoubleLinkedList test = new DoubleLinkedList();
+		test.add(0);
+		test.add(1);
+		test.add(2);
+		test.add(3);		
+		test.add(4);
+		test.add(5);		
+		test.add(6);
+		test.add(7);
+		DoubleLinkedList sub = test.sublist(1, 3);
+		String actual = sub.DDebug();
+		String expected = "[1,2,3]";
+		assertEquals(expected, actual);
+	}
 }

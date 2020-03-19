@@ -76,5 +76,19 @@ class SingleLinkedListTest {
 		assertEquals(test.isEmpty(),false);
 		assertEquals(test.contains(5),true);
 		
+		test.clear();
+		test.add(0);
+		test.add(1);
+		test.add(2);
+		test.add(3);		
+		test.add(4);
+		test.add(5);		
+		test.add(6);
+		test.add(7);
+		SingleLinkedList sub = test.sublist(1, 3);
+		assertEquals(sub.contains(1),true);
+		assertEquals(sub.contains(2),true);
+		assertEquals(sub.contains(3),true);
+		assertEquals(sub.size,3);
 	}
 }

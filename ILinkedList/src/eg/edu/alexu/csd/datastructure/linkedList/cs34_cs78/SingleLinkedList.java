@@ -116,9 +116,16 @@ public class SingleLinkedList implements ILinkedList
 		return size;
 	}
 
-	public ILinkedList sublist(int fromIndex, int toIndex) {
-		//NOT DONE YET 
-		return null;
+	public SingleLinkedList sublist(int fromIndex, int toIndex) 
+	{
+		if (toIndex >=size)throw new IllegalArgumentException("The index is out of bounds");
+		SingleLinkedList sub = new SingleLinkedList();
+		for (int i = fromIndex ; i <=toIndex;i++)
+		{
+			Object element = this.get(i);
+			sub.add(element);
+		}
+		return sub;
 	}
 
 	public boolean contains(Object o) 

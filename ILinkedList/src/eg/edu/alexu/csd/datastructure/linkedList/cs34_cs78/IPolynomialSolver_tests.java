@@ -65,25 +65,22 @@ class IPolynomialSolver_tests
 	{
 		//Test for print function and clear
 		PolynomialSolver pol = new PolynomialSolver();
-		DoubleLinkedList test = new DoubleLinkedList();
-		test.add(new java.awt.Point(-1,3));
-		test.add(new java.awt.Point(2,2));
-		test.add(new java.awt.Point(1,1));
-		test.add(new java.awt.Point(-4,0));
-		test.add(new java.awt.Point(0,-1));
-		test.add(new java.awt.Point(6,-5));
-		pol.A = test;
+		pol.A.add(new java.awt.Point(-1,3));
+		pol.A.add(new java.awt.Point(2,2));
+		pol.A.add(new java.awt.Point(1,1));
+		pol.A.add(new java.awt.Point(-4,0));
+		pol.A.add(new java.awt.Point(0,-1));
+		pol.A.add(new java.awt.Point(6,-5));
 		String expected = "-x^(3) + 2x^(2) + x - 4 + 6x^(-5)";
 		assertEquals(expected, pol.print('a'));
-		test.clear();
-		test.add(new java.awt.Point(0,10));
-		test.add(new java.awt.Point(-5,2));
-		test.add(new java.awt.Point(5,1));
-		test.add(new java.awt.Point(1,0));
-		test.add(new java.awt.Point(-6,-5));
-		test.add(new java.awt.Point(1,-7));
+		pol.A.clear();
+		pol.A.add(new java.awt.Point(0,10));
+		pol.A.add(new java.awt.Point(-5,2));
+		pol.A.add(new java.awt.Point(5,1));
+		pol.A.add(new java.awt.Point(1,0));
+		pol.A.add(new java.awt.Point(-6,-5));
+		pol.A.add(new java.awt.Point(1,-7));
 		expected = "-5x^(2) + 5x + 1 - 6x^(-5) + x^(-7)";
-		pol.A = test;
 		assertEquals(expected, pol.print('a'));
 		pol.A.clear();
 		assertEquals("", pol.print('a'));
@@ -93,26 +90,23 @@ class IPolynomialSolver_tests
 	{
 		//test for Polynomial Solver
 		PolynomialSolver pol = new PolynomialSolver();
-		DoubleLinkedList test = new DoubleLinkedList();
-		test.add(new java.awt.Point(2,2));
-		test.add(new java.awt.Point(1,1));
-		test.add(new java.awt.Point(5,0));
-		pol.A = test;
+		pol.A.clear();
+		pol.A.add(new java.awt.Point(2,2));
+		pol.A.add(new java.awt.Point(1,1));
+		pol.A.add(new java.awt.Point(5,0));
 		assertEquals(26,pol.evaluatePolynomial('a', 3));
-		test.clear();
-		test.add(new java.awt.Point(5,3));
-		test.add(new java.awt.Point(2,1));
-		test.add(new java.awt.Point(-3,0));
-		test.add(new java.awt.Point(9,-1));
-		test.add(new java.awt.Point(-5,-2));
-		pol.A = test;
+		pol.A.clear();
+		pol.A.add(new java.awt.Point(5,3));
+		pol.A.add(new java.awt.Point(2,1));
+		pol.A.add(new java.awt.Point(-3,0));
+		pol.A.add(new java.awt.Point(9,-1));
+		pol.A.add(new java.awt.Point(-5,-2));
 		assertEquals(44.25,pol.evaluatePolynomial('a', 2));
-		test.clear();
-		test.add(new java.awt.Point(9,5));
-		test.add(new java.awt.Point(-5,3));
-		test.add(new java.awt.Point(2,1));
-		test.add(new java.awt.Point(-1,-2));
-		pol.A = test;
+		pol.A.clear();
+		pol.A.add(new java.awt.Point(9,5));
+		pol.A.add(new java.awt.Point(-5,3));
+		pol.A.add(new java.awt.Point(2,1));
+		pol.A.add(new java.awt.Point(-1,-2));
 		assertEquals(27509.9609375,pol.evaluatePolynomial('a', 5));
 		pol.clearPolynomial('A');
 		assertEquals(0,pol.evaluatePolynomial('a', 999));
@@ -121,14 +115,13 @@ class IPolynomialSolver_tests
 	void test6()
 	{
 		//operations test
-		PolynomialSolver test = new PolynomialSolver();
 		PolynomialSolver pol = new PolynomialSolver();
 		int[][] a = {{1,2},{5,1},{15,0}};
 		int[][] b = {{1,4},{3,1},{1,0}};
 		int[][] c = {{15,1},{6,0}};
-		pol.A = test.array_to_list(a);
-		pol.B = test.array_to_list(b);
-		pol.C = test.array_to_list(c);
+		pol.A = pol.array_to_list(a);
+		pol.B = pol.array_to_list(b);
+		pol.C = pol.array_to_list(c);
 		int[][] expected = {{1,4},{1,2},{8,1},{16,0}};
 		assertArrayEquals(expected, pol.add('a','b'));
 		expected = new int[][] {{1,2},{20,1},{21,0}};
@@ -139,5 +132,21 @@ class IPolynomialSolver_tests
 		assertArrayEquals(expected, pol.multiply('a','b'));
 		expected = new int[][] {{1,2},{-10,1},{9,0}};
 		assertArrayEquals(expected, pol.subtract('a','c'));
+	}
+	@Test
+	void test7()
+	{
+		//operations test 2
+		PolynomialSolver test = new PolynomialSolver();
+		int[][] a = {{1,5},{1,4},{1,3},{1,2},{1,1}};
+		int[][] b = {{1,5},{1,4},{1,3},{1,2},{1,1}};
+		test.A = test.array_to_list(a);
+		test.B = test.array_to_list(b);
+		int [][] expected = {{2,5},{2,4},{2,3},{2,2},{2,1}};
+		assertArrayEquals(expected, test.add('A', 'B'));
+		expected =new int [][]{{0,5},{0,4},{0,3},{0,2},{0,1}};
+		assertArrayEquals(expected, test.subtract('A', 'B'));
+		expected =new int [][]{{1,10},{2,9},{3,8},{4,7},{5,6},{4,5},{3,4},{2,3},{1,2}};
+		assertArrayEquals(expected, test.multiply('A', 'B'));
 	}
 }
