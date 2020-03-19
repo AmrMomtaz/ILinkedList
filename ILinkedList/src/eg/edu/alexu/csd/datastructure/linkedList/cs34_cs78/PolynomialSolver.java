@@ -95,9 +95,9 @@ public class PolynomialSolver implements IPolynomialSolver
 			java.awt.Point p = (java.awt.Point) x.get(i);
 			if (p.x == 0)continue;
 			if (p.x >0&& Result!="") Result+=" + ";
-			else if (p.x <0&& Result!="")Result+=" - ";
+			else if (p.x <0 && p.y!=0 && Result!="")Result+=" - ";
 			if (p.x <-1 && Result=="")Result+=p.x;
-			else if (p.x ==-1 && Result =="")Result+='-';
+			else if (p.x ==-1 && p.y!=0 && Result =="")Result+='-';
 			else if (p.x ==1 && p.y ==0)Result+='1';
 			else if (p.x ==-1 && p.y ==0)Result+="-1";
 			else if (p.x > 1)Result +=p.x;

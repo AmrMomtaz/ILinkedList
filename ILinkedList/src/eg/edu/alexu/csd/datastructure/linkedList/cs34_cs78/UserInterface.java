@@ -241,7 +241,6 @@ public class UserInterface
 				System.out.println("WRONG INPUT");
 				break;
 		}
-		input.close();
 	}
 	}
 }
