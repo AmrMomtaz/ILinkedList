@@ -1,7 +1,6 @@
 package eg.edu.alexu.csd.datastructure.linkedList.cs34_cs78;
 
 import java.awt.Point;
-import java.util.Arrays;
 
 public class PolynomialSolver implements IPolynomialSolver
 {
@@ -100,6 +99,7 @@ public class PolynomialSolver implements IPolynomialSolver
 			if (p.x <-1 && Result=="")Result+=p.x;
 			else if (p.x ==-1 && Result =="")Result+='-';
 			else if (p.x ==1 && p.y ==0)Result+='1';
+			else if (p.x ==-1 && p.y ==0)Result+="-1";
 			else if (p.x > 1)Result +=p.x;
 			else if (p.x < -1)Result+= (p.x*-1);
 			if(p.y!=0 && p.y!=1)Result +="x^("+p.y+")";
@@ -158,106 +158,126 @@ public class PolynomialSolver implements IPolynomialSolver
 	
 	public int[][] add(char poly1, char poly2)
 	{
-		DoubleLinkedList S = new DoubleLinkedList();
-		boolean taken=false;
-		int[][] p1 = null;
-		int[][] p2 = null;
-		if(poly1 == 'a' || poly1 == 'A')
-			p1 = list_to_array(A);
-		else if(poly1 == 'b' || poly1 == 'B')
-			p1 = list_to_array(B);
-		else if(poly1 == 'c' || poly1 == 'C')
-			p1 = list_to_array(C);
-		if(poly2 == 'a' || poly2 == 'A')
-			p2 = list_to_array(A);
-		else if(poly2 == 'b' || poly2 == 'B')
-			p2 = list_to_array(B);
-		else if(poly2 == 'c' || poly2 == 'C')
-			p2 = list_to_array(C);
-		S = array_to_list(p2);
-		for(int i=0 ; i<p1.length ; i++) {
-			taken = false;
-			for(int j=0 ; j<p2.length ; j++) {
-				if(p1[i][1]==p2[j][1]) {
-					taken = true;
-					S.set(j, new Point(p1[i][0] + p2[j][0] , p1[i][1]));
+		DoubleLinkedList X =null,Y =null;
+		if (poly1 =='a'||poly1== 'A')	X=A;
+		else if (poly1 =='b'||poly1== 'B') X =B;
+		else if(poly1 =='c'||poly1== 'C') X = C;
+		if (poly2 =='a'||poly2== 'A')	Y = A;
+		else if (poly2 =='b'||poly2== 'B') Y = B;
+		else if(poly2 =='c'||poly2== 'C') Y = C;
+		R = new DoubleLinkedList();
+		for (int i = 0;i < X.size ;i++)
+		{
+			R.add(X.get(i));
+		}
+		for (int i = 0 ; i < Y.size ;i++)
+		{
+			boolean check = false;
+			java.awt.Point pointY = (Point) Y.get(i);
+			int expY = pointY.y;
+			int coffY = pointY.x;
+			for (int j = 0 ; j < R.size ;j++)
+			{
+				java.awt.Point pointR = (Point) R.get(j);
+				int expR = pointR.y;
+				int coffR = pointR.x;
+				if (expY == expR)
+				{
+					check = true;
+					R.set(j, new java.awt.Point(coffY+coffR,expR));
+					break;
 				}
 			}
-			if(taken==false) {
-				S.add(new Point(p1[i][0],p1[i][1]));
+			if (!check)
+			{
+				R.add(new java.awt.Point(coffY,expY));
 			}
 		}
-		return sort(S);
+		return sort(R);
 	}
 	
-	
-
 	public int[][] subtract(char poly1, char poly2)
 	{
-		DoubleLinkedList S = new DoubleLinkedList();
-		boolean taken=false;
-		int[][] p1 = null;
-		int[][] p2 = null;
-		if(poly1 == 'a' || poly1 == 'A')
-			p1 = list_to_array(A);
-		else if(poly1 == 'b' || poly1 == 'B')
-			p1 = list_to_array(B);
-		else if(poly1 == 'c' || poly1 == 'C')
-			p1 = list_to_array(C);
-		if(poly2 == 'a' || poly2 == 'A')
-			p2 = list_to_array(A);
-		else if(poly2 == 'b' || poly2 == 'B')
-			p2 = list_to_array(B);
-		else if(poly2 == 'c' || poly2 == 'C')
-			p2 = list_to_array(C);
-		for(int k=0;k<p2.length;k++) {
-			p2[k][0]*=-1;
+		DoubleLinkedList X =null,Y =null;
+		if (poly1 =='a'||poly1== 'A')	X=A;
+		else if (poly1 =='b'||poly1== 'B') X =B;
+		else if(poly1 =='c'||poly1== 'C') X = C;
+		if (poly2 =='a'||poly2== 'A')	Y = A;
+		else if (poly2 =='b'||poly2== 'B') Y = B;
+		else if(poly2 =='c'||poly2== 'C') Y = C;
+		if (X ==null || Y ==null)throw new IllegalArgumentException("The polynomial is not set");
+		R = new DoubleLinkedList();
+		for (int i = 0;i < X.size ;i++)
+		{
+			R.add(X.get(i));
 		}
-		S = array_to_list(p2);
-		for(int i=0 ; i<p1.length ; i++) {
-			taken = false;
-			for(int j=0 ; j<p2.length ; j++) {
-				if(p1[i][1]==p2[j][1]) {
-					taken = true;
-					S.set(j, new Point(p1[i][0] + p2[j][0] , p1[i][1]));
+		for (int i = 0 ; i < Y.size ;i++)
+		{
+			boolean check = false;
+			java.awt.Point pointY = (Point) Y.get(i);
+			int expY = pointY.y;
+			int coffY = pointY.x;
+			for (int j = 0 ; j < R.size ;j++)
+			{
+				java.awt.Point pointR = (Point) R.get(j);
+				int expR = pointR.y;
+				int coffR = pointR.x;
+				if (expY == expR)
+				{
+					check = true;
+					R.set(j, new java.awt.Point(coffR-coffY,expR));
+					break;
 				}
 			}
-			if(taken==false) {
-				S.add(new Point(p1[i][0],p1[i][1]));
+			if (!check)
+			{
+				R.add(new java.awt.Point(coffY*-1,expY));
 			}
 		}
-		return sort(S);
+		return sort(R);
 	}
 	public int[][] multiply(char poly1, char poly2)
 	{
-		DoubleLinkedList M = new DoubleLinkedList();
-		int[][] p1 = null;
-		int[][] p2 = null;
-		if(poly1 == 'a' || poly1 == 'A')
-			p1 = list_to_array(A);
-		else if(poly1 == 'b' || poly1 == 'B')
-			p1 = list_to_array(B);
-		else if(poly1 == 'c' || poly1 == 'C')
-			p1 = list_to_array(C);
-		if(poly2 == 'a' || poly2 == 'A')
-			p2 = list_to_array(A);
-		else if(poly2 == 'b' || poly2 == 'B')
-			p2 = list_to_array(B);
-		else if(poly2 == 'c' || poly2 == 'C')
-			p2 = list_to_array(C);
-		for(int i=0; i<p1.length ; i++) {
-			for(int j=0 ; j<p2.length ; j++) {
-				M.add(new Point((p1[i][0]*p2[j][0]),(p1[i][1]+p2[j][1])));
+		DoubleLinkedList X =null,Y =null;
+		if (poly1 =='a'||poly1== 'A')	X=A;
+		else if (poly1 =='b'||poly1== 'B') X =B;
+		else if(poly1 =='c'||poly1== 'C') X = C;
+		if (poly2 =='a'||poly2== 'A')	Y = A;
+		else if (poly2 =='b'||poly2== 'B') Y = B;
+		else if(poly2 =='c'||poly2== 'C') Y = C;
+		if (X ==null || Y ==null)throw new IllegalArgumentException("The polynomial is not set");
+		R = new DoubleLinkedList();
+		for (int i = 0;i < X.size;i++)
+		{
+			java.awt.Point pointX = (Point) X.get(i);
+			int coffX = pointX.x;
+			int expX = pointX.y;
+			for (int j = 0 ; j < Y.size ;j++)
+			{
+				java.awt.Point pointY = (Point) Y.get(j);
+				int coffY = pointY.x;
+				int expY = pointY.y;
+				java.awt.Point result =new java.awt.Point(coffX*coffY,expX+expY);
+				if (R.size == 0)R.add(result);
+				else
+				{
+					for (int k = 0 ; k < R.size;k++)
+					{
+						java.awt.Point pointR = (Point) R.get(k);
+						if (pointR.y == result.y)
+						{
+							R.set(k, new java.awt.Point(pointR.x+result.x,pointR.y));
+							break;
+						}
+						if (k ==R.size-1)
+						{
+							R.add(result);
+							break;
+						}
+					}
+				}
 			}
 		}
-		for(int i=0;i<M.size;i++) {
-			for(int j=i+1 ; j<M.size ; j++) {
-				Point m1 = (java.awt.Point) M.get(i);
-				Point m2 = (java.awt.Point) M.get(j);
-				if(m1.y == m2.y) {
-					M.set(i,new Point(m1.x + m2.x , m2.y));
-					M.remove(j);
-				}}}
-		return sort(M);
+		return sort(R);
 	}
 }

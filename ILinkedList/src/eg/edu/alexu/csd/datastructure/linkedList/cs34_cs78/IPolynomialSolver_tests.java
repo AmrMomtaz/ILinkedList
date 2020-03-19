@@ -118,7 +118,8 @@ class IPolynomialSolver_tests
 		assertEquals(0,pol.evaluatePolynomial('a', 999));
 	}
 	@Test
-	void test6(){
+	void test6()
+	{
 		//operations test
 		PolynomialSolver test = new PolynomialSolver();
 		PolynomialSolver pol = new PolynomialSolver();
@@ -129,14 +130,14 @@ class IPolynomialSolver_tests
 		pol.B = test.array_to_list(b);
 		pol.C = test.array_to_list(c);
 		int[][] expected = {{1,4},{1,2},{8,1},{16,0}};
-		assertEquals(Arrays.deepToString(test.add('a', 'b')),Arrays.deepToString(expected));
+		assertArrayEquals(expected, pol.add('a','b'));
 		expected = new int[][] {{1,2},{20,1},{21,0}};
-		assertEquals(Arrays.deepToString(test.add('a', 'c')),Arrays.deepToString(expected));
+		assertArrayEquals(expected, pol.add('a','c'));
 		expected = new int[][] {{1,4},{18,1},{7,0}};
-		assertEquals(Arrays.deepToString(test.add('b', 'c')),Arrays.deepToString(expected));
+		assertArrayEquals(expected, pol.add('b','c'));
 		expected = new int[][] {{1,6},{5,5},{15,4},{3,3},{16,2},{50,1},{15,0}};
-		assertEquals(Arrays.deepToString(test.multiply('a', 'b')),Arrays.deepToString(expected));
+		assertArrayEquals(expected, pol.multiply('a','b'));
 		expected = new int[][] {{1,2},{-10,1},{9,0}};
-		assertEquals(Arrays.deepToString(test.subtract('a', 'c')),Arrays.deepToString(expected));
+		assertArrayEquals(expected, pol.subtract('a','c'));
 	}
 }
