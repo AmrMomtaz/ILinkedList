@@ -84,6 +84,12 @@ class IPolynomialSolver_tests
 		assertEquals(expected, pol.print('a'));
 		pol.A.clear();
 		assertEquals("0", pol.print('a'));
+		pol.A.add(new java.awt.Point(-1,0));
+		expected = "-1";
+		assertEquals(expected, pol.print('a'));
+		pol.A.add(0,new java.awt.Point(1,2));
+		expected = "x^(2) - 1";
+		assertEquals(expected, pol.print('a'));
 		}
 	@Test
 	void test5()

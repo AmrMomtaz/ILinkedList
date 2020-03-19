@@ -99,9 +99,9 @@ public class PolynomialSolver implements IPolynomialSolver
 			if (p.x <-1 && Result=="")Result+=p.x;
 			else if (p.x ==-1 && p.y!=0 && Result =="")Result+='-';
 			else if (p.x ==1 && p.y ==0)Result+='1';
-			else if (p.x ==-1 && p.y ==0)Result+="-1";
+			else if (p.x ==-1 && p.y ==0&&Result =="")Result+="-1";
 			else if (p.x > 1)Result +=p.x;
-			else if (p.x < -1)Result+= (p.x*-1);
+			else if (p.x <= -1)Result+= (p.x*-1);
 			if(p.y!=0 && p.y!=1)Result +="x^("+p.y+")";
 			else if (p.y ==1)Result+='x';
 		}
