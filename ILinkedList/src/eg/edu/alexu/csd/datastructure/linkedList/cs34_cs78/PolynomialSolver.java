@@ -105,6 +105,7 @@ public class PolynomialSolver implements IPolynomialSolver
 			if(p.y!=0 && p.y!=1)Result +="x^("+p.y+")";
 			else if (p.y ==1)Result+='x';
 		}
+		if(Result== "") Result = "0";
 		Result =Result.strip();
 		return Result;
 	}

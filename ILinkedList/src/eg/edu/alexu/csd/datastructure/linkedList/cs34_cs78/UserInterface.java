@@ -153,13 +153,8 @@ public class UserInterface
 						System.out.println("Insert the second operand variable name: A, B or C");
 					}
 					}
-			if(p1==p2) {
-				System.out.println(0);
-			}
-			else {
 			PolynomialSolver.R = p.array_to_list(p.subtract(p1, p2));
 			System.out.println(p.print('r'));
-			}
 			break;
 		case '5' :
 			System.out.println("Insert the first operand variable name: A, B or C");
