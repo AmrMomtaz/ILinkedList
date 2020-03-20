@@ -194,6 +194,13 @@ public class PolynomialSolver implements IPolynomialSolver
 				R.add(new java.awt.Point(coffY,expY));
 			}
 		}
+		for (int i = 0 ; i < R.size ;)
+		{
+			java.awt.Point p = (Point) R.get(i);
+			if (p.x==0)R.remove(i);
+			else i++;
+		}
+		if(R.size==0)R.add(new java.awt.Point(0,0));
 		return sort(R);
 	}
 	
@@ -235,6 +242,13 @@ public class PolynomialSolver implements IPolynomialSolver
 				R.add(new java.awt.Point(coffY*-1,expY));
 			}
 		}
+		for (int i = 0 ; i < R.size ;)
+		{
+			java.awt.Point p = (Point) R.get(i);
+			if (p.x==0)R.remove(i);
+			else i++;
+		}
+		if(R.size==0)R.add(new java.awt.Point(0,0));
 		return sort(R);
 	}
 	public int[][] multiply(char poly1, char poly2)
@@ -279,6 +293,13 @@ public class PolynomialSolver implements IPolynomialSolver
 				}
 			}
 		}
+		for (int i = 0 ; i < R.size ;)
+		{
+			java.awt.Point p = (Point) R.get(i);
+			if (p.x==0)R.remove(i);
+			else i++;
+		}
+		if(R.size==0)R.add(new java.awt.Point(0,0));
 		return sort(R);
 	}
 }

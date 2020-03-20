@@ -150,7 +150,7 @@ class IPolynomialSolver_tests
 		test.B = test.array_to_list(b);
 		int [][] expected = {{2,5},{2,4},{2,3},{2,2},{2,1}};
 		assertArrayEquals(expected, test.add('A', 'B'));
-		expected =new int [][]{{0,5},{0,4},{0,3},{0,2},{0,1}};
+		expected =new int [][]{{0,0}};
 		assertArrayEquals(expected, test.subtract('A', 'B'));
 		expected =new int [][]{{1,10},{2,9},{3,8},{4,7},{5,6},{4,5},{3,4},{2,3},{1,2}};
 		assertArrayEquals(expected, test.multiply('A', 'B'));
