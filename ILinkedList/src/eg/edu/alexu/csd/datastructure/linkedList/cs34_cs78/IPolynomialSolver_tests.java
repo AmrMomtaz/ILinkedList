@@ -90,7 +90,7 @@ class IPolynomialSolver_tests
 		pol.A.add(0,new java.awt.Point(1,2));
 		expected = "x^(2) - 1";
 		assertEquals(expected, pol.print('a'));
-		}
+	}
 	@Test
 	void test5()
 	{
